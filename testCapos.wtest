@@ -1,1 +1,56 @@
-r
+import capos.*
+
+describe "Capo Parte 1" {
+
+  test "Rolando empieza sin artefactos" {
+    assert.that(rolando.artefactos().isEmpty())
+  }
+
+  test "Rolando sin artefactos y capacidad dos, encuentra una espada y la agarra" {
+    rolando.encontrar(espada)
+    assert.that(rolando.artefactos().contains(espada))
+  }
+  
+  test "Rolando con un artefacto y capacidad dos, encuentra un libro y lo agarra"{
+    
+    rolando.encontrar(libro)
+    assert.that(rolando.artefactos().contains(libro))
+  }
+
+  test "Rolando con dos artefactos y capacidad dos, encuentra un collar y no lo agarra" {
+    rolando.encontrar(collar)
+    assert.that(rolando.artefactos().contains(collar))
+  }
+
+  /*### Ejemplo:
+    1. rolando encuentra la espada del destino (la agarra)
+    2. rolando encuentra el libro de hechizos (la agarra)
+    3. rolando llega al castillo de piedra (deja en el castillo la espada y el libro de hechizos)
+    4. rolando encuentra el collar divino (ahora si lo puede agarrar, ya que liberó espacio)
+    5. rolando llega al castillo de piedra de nuevo(deja el collar, con lo cual ahora el castillo tiene el collar, la espada y el libro)
+  */
+
+  test "Rolando sin artefactos y capacidad dos, encuentra una espada del destino y la agarra" {
+    rolando.encontrar(espada)
+    assert.that(rolando.artefactos().contains(espada))
+  }
+  
+  test "Rolando con un artefacto y capacidad dos, encuentra un libro de hechizos y lo agarra"{
+    
+    rolando.encontrar(libro)
+    assert.that(rolando.artefactos().contains(libro))
+  }
+
+  test "Rolando llega al castillo y deja los artefactos" {
+    rolando.encontrar(espada)
+    rolando.encontrar(libro)
+    rolando.irAMorada()
+    rolando.encontrar(collar)
+    rolando.irAMorada()
+
+  }
+
+}
+
+
+
